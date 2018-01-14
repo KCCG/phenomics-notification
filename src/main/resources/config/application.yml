@@ -1,0 +1,35 @@
+spring:
+  mail:
+      host: smtp.garvan.unsw.edu.au
+      port: 587
+      username: ahmmua
+      password: Chillax@1Moon
+      properties:
+        mail:
+          smtp:
+            connectiontimeout: 5000
+            timeout: 3000
+            writetimeout: 5000
+            auth: true
+            #send partial means that even if you have sent a list of email addresses where some are invalid, the mail will still be sent to the valid email addresses.
+            sendpartial: true
+            starttls:
+              enable: true
+            ssl:
+              trust: smtp.garvan.unsw.edu.au
+
+emailConfig:
+  fromAddress: a.muaz@garvan.org.au
+  retryCount: 2
+
+logging:
+  path: ./logs/
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %p | source= %c{1.} | %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %p | stackName=phenomics | appName=notification | source= %c{1.} | %msg%n"
+  level:
+    root: WARN
+    au.org.garvan.kccg.notifications: INFO
+
+server:
+    port: 9090
