@@ -47,10 +47,25 @@ dependencies {
 
     )
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'junit:junit:4.12'
 }
+
 bootRun {
     systemProperties System.properties
 
-
 }
+
+task buildDocker(type: Docker) {
+    baseImage = 'develar/java:latest'
+    push = project.hasProperty('push')
+    tag = 'phenomics-notification'
+    addFile {
+        from jar
+        rename {'app.jar'}
+    }
+    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom',  '-Dspring.profiles.active=dev', '-jar', '/app.jar' ])
+    exposePort(9080)
+}
+
+buildDocker.dependsOn(build)
+

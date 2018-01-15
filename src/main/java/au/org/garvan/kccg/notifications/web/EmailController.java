@@ -26,7 +26,7 @@ public class EmailController {
 
 
     @ApiOperation(value = "sendEmail", nickname = "sendEmail")
-    @RequestMapping(value = "/Email", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/email", method = RequestMethod.POST, produces = "application/json")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = boolean.class, responseContainer = "list"),
             @ApiResponse(code = 401, message = "Unauthorized"),
@@ -34,17 +34,16 @@ public class EmailController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     public boolean sendEmail(@ApiParam("request") @RequestBody EmailNotificationRequestDto emailNotificationRequestDto) {
-        List<EmailAttachmentInfo> lstAttachement = new ArrayList<>();
-
+        List<EmailAttachmentInfo> listAttatchment = new ArrayList<>();
         NotificationRequest notificationRequest = new NotificationRequest(emailNotificationRequestDto.getMessage(),
                 emailNotificationRequestDto.getSubject(),
                 emailNotificationRequestDto.getToRecipients(),
                 emailNotificationRequestDto.getCcRecipients(),
                 emailNotificationRequestDto.getBccRecipients(),
-                "1",
-                lstAttachement,
+                emailNotificationRequestDto.getUniqueID(),
+                listAttatchment,
                 emailNotificationRequestDto.getSender(),
-                ",");
+                "0");
 
         engine.sendMessage(notificationRequest);
         return true;

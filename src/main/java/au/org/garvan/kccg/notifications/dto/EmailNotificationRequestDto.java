@@ -4,6 +4,8 @@ package au.org.garvan.kccg.notifications.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.beans.NamedArg;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @EqualsAndHashCode
 @JsonInclude(Include.NON_NULL)
+@Data
 public class EmailNotificationRequestDto implements Serializable {
 
     private static final long serialVersionUID = -1528423248799532018L;
@@ -42,12 +45,19 @@ public class EmailNotificationRequestDto implements Serializable {
     @JsonProperty("sender")
     private String sender;
 
+    @JsonProperty("uniqueID")
+    private String uniqueID;
+
+
+
     public EmailNotificationRequestDto(@JsonProperty("toRecipients") List<String> toRecipients,
                                        @JsonProperty("ccRecipients") List<String> ccRecipients,
                                        @JsonProperty("bccRecipients") List<String> bccRecipients, @JsonProperty("message") String message,
                                        @JsonProperty("subject") String subject,
                                        @JsonProperty("emailAttachments") List<EmailAttachmentInfoDto> emailAttachments,
-                                       @JsonProperty("sender") String sender) {
+                                       @JsonProperty("sender") String sender,
+                                       @JsonProperty("uniqueID") String uniqueID
+                                       ) {
         this.toRecipients = toRecipients;
         this.ccRecipients = ccRecipients;
         this.bccRecipients = bccRecipients;
@@ -55,34 +65,9 @@ public class EmailNotificationRequestDto implements Serializable {
         this.subject = subject;
         this.emailAttachments = emailAttachments;
         this.sender = sender;
+        this.uniqueID = uniqueID;
     }
 
-    public List<String> getCcRecipients() {
-        return ccRecipients;
-    }
 
-    public List<String> getBccRecipients() {
-        return bccRecipients;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public List<EmailAttachmentInfoDto> getEmailAttachments() {
-        return emailAttachments;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public List<String> getToRecipients() {
-        return toRecipients;
-    }
 
 }

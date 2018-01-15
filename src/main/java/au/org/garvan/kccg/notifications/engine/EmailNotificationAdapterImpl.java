@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 
 
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 
@@ -42,15 +43,16 @@ public class EmailNotificationAdapterImpl {
     @Value("${emailConfig.retryCount}")
     private Integer retryCount;
 
+    @Async
     public void sendMessage(NotificationRequest notificationRequest) {
         EmailAttachmentValidator.validateAttachmentContent(
                 notificationRequest.getEmailAttachmentInfoList());
         try {
-            log.info("Building the email message to be sent");
+            log.info(String.format("Building the email message to be sent for request id: %s", notificationRequest.getUniqueReference()));
             MimeMessage message = buildMessage(notificationRequest);
-            log.info("Preparing to send the email.");
+            log.info(String.format("Sending email for request id: %s", notificationRequest.getUniqueReference()));
             mailSender.send(message);
-            log.info("Successfully sent the email message.");
+            log.info(String.format("Email sent for request id: %s", notificationRequest.getUniqueReference()));
         } catch (Exception e) {
             if (retryCount > 0) {
                 retryCount--;
@@ -58,8 +60,6 @@ public class EmailNotificationAdapterImpl {
             }
             log.error("Exception received while trying to send out email " +
                     "message : {}", e);
-//            throw new NotificationException("Error occurred while trying to send " +
-//                    "out the email.", e);
         }
     }
 
@@ -129,13 +129,11 @@ public class EmailNotificationAdapterImpl {
         String subject = notificationRequest.getSubject();
         if (StringUtils.isEmpty(subject)) {
             subject = "Ref : " + notificationRequest.getUniqueReference();
-        } else {
-            subject += String.format("(Ref: %s)", notificationRequest.getUniqueReference());
         }
         mimeMessage.setSubject(subject);
         // This value set in this header will be returned on the reply mail on
         // the header name called "References".
-        mimeMessage.addHeader("In-Reply-To", notificationRequest.getUniqueReference());
+//        mimeMessage.addHeader("In-Reply-To", notificationRequest.getUniqueReference());
         return mimeMessage;
     }
 }
