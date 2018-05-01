@@ -72,8 +72,8 @@ public class AnalyticsManager {
             connect = DriverManager
                     .getConnection(jdbcString);
             Statement setupStatement = connect.createStatement();
-            setupStatement.addBatch(executableQuery);
-            setupStatement.executeBatch();
+            setupStatement.execute(executableQuery);
+//            setupStatement.executeBatch();
             setupStatement.close();
             connect.close();
 

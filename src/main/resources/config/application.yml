@@ -2,17 +2,17 @@ spring:
   dbhandlers:
     mysql:
       connection:
-        string: jdbc:mysql://localhost:3306
+        string: jdbc:mysql://52.64.240.25:3306
         dbname: AnalyticsProd
-        username: root
-        password:
+        username: notification
+        password: PhenomicsProd
       feedbacktablename: AnalyticsFeedback
       querylogstablename:
   mail:
-      host: smtp.garvan.unsw.edu.au
+      host: smtp.gmail.com
       port: 587
-      username: ahmmua
-      password: Chillax@1Moon
+      username: phenomics.info@gmail.com
+      password: Phenomics@1Notification
       properties:
         mail:
           smtp:
@@ -24,11 +24,10 @@ spring:
             sendpartial: true
             starttls:
               enable: true
-            ssl:
-              trust: smtp.garvan.unsw.edu.au
+
 
 emailConfig:
-  fromAddress: a.muaz@garvan.org.au
+  fromAddress: phenomics.info@gmail.com
   retryCount: 2
 
 logging:
