@@ -42,9 +42,8 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-actuator",
             'org.springframework.boot:spring-boot-starter-mail:1.5.9.RELEASE',
             "io.springfox:springfox-swagger2:2.5.0",
-            'io.springfox:springfox-swagger-ui:2.5.0'
-
-
+            'io.springfox:springfox-swagger-ui:2.5.0',
+            'mysql:mysql-connector-java:8.0.11'
     )
 
     testCompile 'junit:junit:4.12'

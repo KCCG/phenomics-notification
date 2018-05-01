@@ -1,4 +1,13 @@
 spring:
+  dbhandlers:
+    mysql:
+      connection:
+        string: jdbc:mysql://localhost:3306
+        dbname: AnalyticsProd
+        username: root
+        password:
+      feedbacktablename: AnalyticsFeedback
+      querylogstablename:
   mail:
       host: smtp.garvan.unsw.edu.au
       port: 587
