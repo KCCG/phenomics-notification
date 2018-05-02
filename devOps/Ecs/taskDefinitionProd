@@ -42,7 +42,7 @@
         }
     ],
     "taskRoleArn": null,
-    "family": "phenomics-notification-task",
+    "family": "phenomics-notification-prod-task",
     "networkMode": null,
     "volumes": [
     {
