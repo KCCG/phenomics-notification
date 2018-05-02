@@ -2,12 +2,12 @@ spring:
   dbhandlers:
     mysql:
       connection:
-        string: jdbc:mysql://localhost:3306
+        string: jdbc:mysql://52.64.240.25:3306
         dbname: AnalyticsProd
-        username: root
-        password:
+        username: notification
+        password: PhenomicsProd
       feedbacktablename: AnalyticsFeedback
-      querylogstablename:
+      queryhittablename: AnalyticsQueryHit
   mail:
       host: smtp.gmail.com
       port: 587

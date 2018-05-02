@@ -7,7 +7,7 @@ spring:
         username: notification
         password: PhenomicsProd
       feedbacktablename: AnalyticsFeedback
-      querylogstablename:
+      queryhittablename: AnalyticsQueryHit
   mail:
       host: smtp.gmail.com
       port: 587
@@ -38,7 +38,7 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %p | stackName=phenomics | appName=notification | source= %c{1.} | %msg%n"
   level:
     root: WARN
-    au.org.garvan.kccg.notifications: INFO
+    au.org.garvan.kccg.notifications: DEBUG
 
 server:
     port: 9090

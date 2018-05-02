@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class AnalyticsManagerTest {
 
-    AnalyticsManager analyticsManager = new AnalyticsManager("jdbc:mysql://localhost:3306","AnalyticsProd","root", "", "AnalyticsFeedback");
+    AnalyticsManager analyticsManager = new AnalyticsManager("jdbc:mysql://localhost:3306","AnalyticsProd","root", "", "AnalyticsFeedback","AnalyticsQueryHit");
 
     @Test
     public void storeFeedback() {

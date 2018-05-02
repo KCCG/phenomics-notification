@@ -10,29 +10,34 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @ApiModel
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FeedbackRequest
-{
-
-    @ApiModelProperty
-    private String pmid;
+public class QueryHitRequest {
 
     @JsonProperty
     @ApiModelProperty
-    private String feedback;
+    List<String> searchItems;
 
     @JsonProperty
     @ApiModelProperty
-    private FeedbackAnnotationItem annotation;
+    List<String> filterItems;
+
+    @JsonProperty
+    @ApiModelProperty
+    private String queryKey;
+
+    @JsonProperty
+    @ApiModelProperty
+    private boolean history;
 
     @JsonProperty
     @ApiModelProperty
     private String sendersAddress;
-
 
     @JsonProperty
     @ApiModelProperty
@@ -40,8 +45,8 @@ public class FeedbackRequest
 
 
     @Override
-    public String toString(){
-        return String.format("From:%s | Article ID:%s | FeedBack:%s | AnnotationID:%s",
-                sendersAddress, pmid,feedback,annotation.getId());
+    public String toString() {
+        return String.format("From:%s | QueryKey:%s ",
+                sendersAddress, queryKey);
     }
 }
