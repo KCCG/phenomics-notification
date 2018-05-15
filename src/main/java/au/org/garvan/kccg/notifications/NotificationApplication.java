@@ -34,7 +34,7 @@ public class NotificationApplication {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(regex("/email"))
+                .paths(regex("/email|/feedback|/queryhits*"))
                 .build();
     }
 

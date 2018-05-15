@@ -1,9 +1,18 @@
 spring:
+  dbhandlers:
+    mysql:
+      connection:
+        string: jdbc:mysql://52.64.240.25:3306
+        dbname: AnalyticsProd
+        username: notification
+        password: PhenomicsProd
+      feedbacktablename: AnalyticsFeedback
+      queryhittablename: AnalyticsQueryHit
   mail:
-      host: smtp.garvan.unsw.edu.au
+      host: smtp.gmail.com
       port: 587
-      username: ahmmua
-      password: Chillax@1Moon
+      username: phenomics.info@gmail.com
+      password: Phenomics@1Notification
       properties:
         mail:
           smtp:
@@ -15,11 +24,10 @@ spring:
             sendpartial: true
             starttls:
               enable: true
-            ssl:
-              trust: smtp.garvan.unsw.edu.au
+
 
 emailConfig:
-  fromAddress: a.muaz@garvan.org.au
+  fromAddress: phenomics.info@gmail.com
   retryCount: 2
 
 logging:
@@ -30,7 +38,7 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %p | stackName=phenomics | appName=notification | source= %c{1.} | %msg%n"
   level:
     root: WARN
-    au.org.garvan.kccg.notifications: INFO
+    au.org.garvan.kccg.notifications: DEBUG
 
 server:
     port: 9090

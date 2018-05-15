@@ -34,7 +34,6 @@ dependencies {
             'net.sf.jmimemagic:jmimemagic:0.1.5',
             'commons-collections:commons-collections:3.2.1',
             'org.apache.commons:commons-lang3:3.0',
-
             'com.googlecode.json-simple:json-simple:1.1.1',
             'org.projectlombok:lombok:1.16.14',
             "org.springframework.boot:spring-boot-starter-jetty",
@@ -42,9 +41,8 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-actuator",
             'org.springframework.boot:spring-boot-starter-mail:1.5.9.RELEASE',
             "io.springfox:springfox-swagger2:2.5.0",
-            'io.springfox:springfox-swagger-ui:2.5.0'
-
-
+            'io.springfox:springfox-swagger-ui:2.5.0',
+            'mysql:mysql-connector-java:8.0.11'
     )
 
     testCompile 'junit:junit:4.12'
@@ -64,8 +62,21 @@ task buildDocker(type: Docker) {
         rename {'app.jar'}
     }
     entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom',  '-Dspring.profiles.active=dev', '-jar', '/app.jar' ])
-    exposePort(9080)
+    exposePort(9090)
+}
+
+task buildDockerProd(type: Docker) {
+    baseImage = 'develar/java:latest'
+    push = project.hasProperty('push')
+    tag = 'phenomics-notification-prod'
+    addFile {
+        from jar
+        rename {'app.jar'}
+    }
+    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom',  '-Dspring.profiles.active=prod', '-jar', '/app.jar' ])
+    exposePort(9090)
 }
 
 buildDocker.dependsOn(build)
+
 
