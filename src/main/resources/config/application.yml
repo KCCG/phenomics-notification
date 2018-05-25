@@ -3,7 +3,7 @@ spring:
     mysql:
       connection:
         string: jdbc:mysql://52.64.240.25:3306
-        dbname: AnalyticsProd
+        dbname: AnalyticsDev
         username: notification
         password: PhenomicsProd
       feedbacktablename: AnalyticsFeedback
